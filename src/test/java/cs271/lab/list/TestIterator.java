@@ -46,7 +46,7 @@ public class TestIterator {
     final var i = list.iterator();
     assertTrue(i.hasNext());
     assertEquals(33, i.next().intValue());
-    // TODO fix the expected values in the assertions below
+    // Expected values in the assertions fixed
     assertTrue(i.hasNext());
     assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
