@@ -74,7 +74,7 @@ public class TestIterator {
     final var i = list.iterator();
     while (i.hasNext()) {
       if (i.next() == 77) {
-        i.remove(); // TODO Question: What happens if you use list.remove(Integer.valueOf(77))?
+        i.remove(); // Question: What happens if you use list.remove(Integer.valueOf(77))?
         //Answer:
         // Without the while loop: list.remove(Integer.valueOf(77)) will remove only
         // the first occurrence of 77 from the list.
