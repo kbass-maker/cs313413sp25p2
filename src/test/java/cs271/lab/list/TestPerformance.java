@@ -9,16 +9,24 @@ import org.junit.Test;
 
 public class TestPerformance {
 
-  // TODO run test and record running times for SIZE = 10, 100, 1000, 10000, ...
-  // (choose in conjunction with REPS below up to an upper limit where the clock
-  // running time is in the tens of seconds)
-  // TODO Question: What conclusions can you draw about the performance of LinkedList vs. ArrayList when
-  // comparing their running times for AddRemove vs. Access? Record those running times in README.txt!
-  // TODO (optional) refactor to DRY
-  // which of the two lists performs better as the size increases?
-  private final int SIZE = 10;
+  // running test and recording running times for SIZE = 10, 100, 1000, 10000, ...
 
-  // TODO choose this value in such a way that you can observe an actual effect
+  // Conclusions: Performance of LinkedList vs. ArrayList when comparing their running times for AddRemove vs. Access?
+  // (Running times recorded in README.txt!)
+  //
+  // 1. Add/Remove Performance
+  //ArrayList is significantly slower than LinkedList for add/remove.
+  //
+  // 2️. Access Performance
+  //ArrayList is much faster than LinkedList for element access.
+  //
+  // which of the two lists performs better as the size increases?
+  // As the size increases:
+  // ArrayList is better for access performance.
+  // LinkedList is better for add/remove operations.
+
+  private final int SIZE = 1000;
+
   // for increasing problem sizes
   private final int REPS = 1000000;
 
@@ -44,33 +52,46 @@ public class TestPerformance {
 
   @Test
   public void testLinkedListAddRemove() {
+    long startTime = System.nanoTime(); // Start time measurement
     for (var r = 0; r < REPS; r++) {
       linkedList.add(0, 77);
       linkedList.remove(0);
     }
+    long endTime = System.nanoTime(); // End time measurement
+    System.out.println("LinkedList Add/Remove Time: " + (endTime - startTime) / 1e6 + " ms"); // Print execution time
   }
 
   @Test
   public void testArrayListAddRemove() {
+    long startTime = System.nanoTime(); // Start time measurement
     for (var r = 0; r < REPS; r++) {
       arrayList.add(0, 77);
       arrayList.remove(0);
     }
+    long endTime = System.nanoTime(); // CHANGED: End time measurement
+    System.out.println("ArrayList Add/Remove Time: " + (endTime - startTime) / 1e6 + " ms"); // Print execution time
   }
 
   @Test
   public void testLinkedListAccess() {
     var sum = 0L;
+    long startTime = System.nanoTime(); // Start time measurement
     for (var r = 0; r < REPS; r++) {
       sum += linkedList.get(r % SIZE);
     }
+    long endTime = System.nanoTime(); // End time measurement
+    System.out.println("LinkedList Access Time: " + (endTime - startTime) / 1e6 + " ms"); // Print execution time
   }
 
   @Test
   public void testArrayListAccess() {
     var sum = 0L;
+    long startTime = System.nanoTime(); // Start time measurement
     for (var r = 0; r < REPS; r++) {
       sum += arrayList.get(r % SIZE);
     }
+    long endTime = System.nanoTime(); // End time measurement
+    System.out.println("ArrayList Access Time: " + (endTime - startTime) / 1e6 + " ms"); // Print execution time
   }
 }
+
