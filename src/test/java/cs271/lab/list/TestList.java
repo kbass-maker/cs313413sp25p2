@@ -102,7 +102,7 @@ public class TestList {
     list.add(77);
     list.add(6);
     list.remove(5); // This removes the last 77 from the list (the value at index 5).
-    // Expected values in the assertion below
+    // Added Expected values in the assertion below
     assertEquals(6, list.size());
     assertEquals(1, list.indexOf(77));
     assertEquals(3, list.lastIndexOf(77));
@@ -126,7 +126,7 @@ public class TestList {
     list.add(77);
     list.add(66);
     // Using containsAll and List.of,
-    // 1) asserting that list contains all five different numbers added
+    // 1) Asserting that list contains all five different numbers added
     assertEquals(true , list.containsAll(List.of(33, 44, 55, 66, 77)));
 
     // 2) asserting that list does not contain all of 11, 22, and 33
@@ -217,7 +217,7 @@ public class TestList {
     list.add(55);
     list.add(77);
     list.add(66);
-    // Fixing the arguments in the subList method so that the assertion
+    // Fixed the arguments in the subList method so that the assertion
     // passes
     assertEquals(List.of(44, 77, 55), list.subList(2, 5));
   }

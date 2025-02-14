@@ -23,7 +23,7 @@ public class TestIterator {
     list = new ArrayList<Integer>();
     //list = new LinkedList<>();
     // Question: Also try with a LinkedList - does it make any difference?
-    // Answer: There’s no functional difference
+    // Answer: There’s no functional difference.
   }
 
   @After
@@ -49,7 +49,7 @@ public class TestIterator {
     final var i = list.iterator();
     assertTrue(i.hasNext());
     assertEquals(33, i.next().intValue());
-    // Expected values in the assertions fixed
+    // Fixed Expected values in the assertions.
     assertTrue(i.hasNext());
     assertEquals(77, i.next().intValue());
     assertTrue(i.hasNext());
