@@ -2,8 +2,6 @@ COMP 313/413 Project 2 Report
 
 TestList.java and TestIterator.java
 
-	TODO also try with a LinkedList - does it make any difference?
-
 		There's no functional difference using LinkedList.
 
 TestList.java
