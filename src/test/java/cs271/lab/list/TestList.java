@@ -20,7 +20,7 @@ public class TestList {
     //list = new ArrayList<Integer>();
     list = new LinkedList<>();
 
-    // There's no difference using LinkedList.
+    // There's no functional difference using LinkedList.
   }
 
   @After

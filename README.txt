@@ -1,39 +1,105 @@
+COMP 313/413 Project 2 Report
+
+TestList.java and TestIterator.java
+
+	TODO also try with a LinkedList - does it make any difference?
+
+		There's no functional difference using LinkedList.
+
+TestList.java
+
+	testRemoveObject()
+
+		list.remove(5); // what does this method do?
+
+			This removes the last 77 from the list (the value at index 5).
+
+		list.remove(Integer.valueOf(5)); // what does this one do?
+
+			This removes 66 from the list (the value at index 5).
+
+TestIterator.java
+
+	testRemove()
+
+		i.remove(); // what happens if you use list.remove(77)?
+
+			Without the while loop: list.remove(Integer.valueOf(77)) will remove only
+            the first occurrence of 77 from the list.
+             but if list.remove(Integer.valueOf(77)) is used inside the loop instead of i.remove(),
+             it will cause a ConcurrentModificationException.
+
+
+
+#running test and recording running times for SIZE = 10, 100, 1000, 10000, ...
+
+  - Conclusions: Performance of LinkedList vs. ArrayList when comparing their running times for AddRemove vs. Access?
+  (Running times recorded below)
+
+  1. Add/Remove Performance
+  ArrayList is significantly slower than LinkedList for add/remove.
+
+  2️. Access Performance
+  ArrayList is much faster than LinkedList for element access.
+
+  # which of the two lists performs better as the size increases?
+  As the size increases:
+  ArrayList is better for access performance.
+  LinkedList is better for add/remove operations.
+
 # Performance Comparison: LinkedList vs. ArrayList
 
 ## Test Setup
-- **Tested Operations:** Add/Remove at the beginning, Access (get)
-- **List Sizes (SIZE):** 10, 100, 1000, 10000, 1000000
-- **Number of Repetitions (REPS):** 100,000
+- Tested Operations: Add/Remove and Access (get)
+- List Sizes (SIZE): 10, 100, 1000, 10000, 1000000
+- Number of Repetitions (REPS): 100,000
 
 ---
 
-## Running Times (in milliseconds)
+TestPerformance.java
 
-| **Size**   | **Access (ArrayList)** | **Access (LinkedList)** | **Add/Remove (ArrayList)** | **Add/Remove (LinkedList)** |
-|------------|------------------------|-------------------------|----------------------------|-----------------------------|
-| **10**     | 10.6413 ms             | 8.6826 ms               | 48.641 ms                  | 20.5405 ms                  |
-| **100**    | 11.5661 ms             | 23.3278 ms              | 48.4588 ms                 | 19.4363 ms                  |
-| **1000**   | 11.2634 ms             | 249.5518 ms             | 116.6927 ms                | 19.8763 ms                  |
-| **10000**  | 7.3234 ms              | 2802.8375 ms            | 487.8209 ms                | 22.0844 ms                  |
-| **100000** | 7.2979 ms              | 40937.38 ms             | 9411.4571 ms               | 16.1684 ms                  |
+	State how many times the tests were executed for each SIZE (10, 100, 1000 and 10000)
+	to get the running time in milliseconds and how the test running times were recorded.
+	These are examples of SIZEs you might choose, you can choose others if you wish.
 
----
+	SIZE 10
+								  #1         #2         #3        #4        #5   	  #6       ... (as many tests as you ran)
+        testArrayListAddRemove:    51.08ms   63.25ms    52.06ms   51.03ms   49.05ms   53.23ms  ... (fill these in in ms)
+        testLinkedListAddRemove:   22.97ms   28.44ms    29.90ms   27.02ms   25.86ms   22.61ms
+		testArrayListAccess:       10.63ms   9.70ms     10.78ms   16.58ms   9.90ms    8.70ms
+        testLinkedListAccess:      12.63ms   14.87ms     13.84ms  12.92ms   11.93ms   11.66ms
 
-## Observations & Conclusions
+	SIZE 100
+								   #1        #2        #3       #4        #5       #6 	     ... (as many tests as you ran)
+        testArrayListAddRemove:    67.26ms   58.59ms    60.20ms  61.06ms   51.30ms  58.18ms    ... (fill these in in ms)
+        testLinkedListAddRemove:   21.59ms   23.04ms    21.36ms  20.36ms   22.67ms  21.93ms
+        testArrayListAccess:       11.08ms   11.53ms    12.31    11.11ms   12.86ms  11.54ms
+        testLinkedListAccess:      18.13ms   18.08ms    17.42ms  18.20ms   19.60ms  17.28ms
 
-###  **Add/Remove Performance**
- `LinkedList` continues to be **faster** than `ArrayList` for **inserting/removing elements** at the **beginning**, with
-  the times remaining relatively stable for `LinkedList` (16.17 ms → 22.08 ms) compared to `ArrayList` (48.64 ms → 116.69 ms → 487.82 ms → 9411.46 ms ).
-  As the list grows, `ArrayList`'s **performance degrades** significantly, due to shifting elements when adding/removing,
-  making it slower than `LinkedList` as the list size increases.
+	SIZE 1000
+								  #1        #2        #3        #4        #5        #6 	      ... (as many tests as you ran)
+        testArrayListAddRemove:   179.06ms  142.50ms  168.34ms  152.98ms  172.08ms  129.83ms     ... (fill these in in ms)
+        testLinkedListAddRemove:  33.17ms   26.23ms   21.60msZ  21.87ms   24.36ms   21.16ms
+		testArrayListAccess:      17.99ms   14.05     10.36ms   12.74ms   11.80ms   10.51ms
+        testLinkedListAccess:     297.01ms  321.51ms  345.96ms  317.76ms  316.28ms  309.85ms
 
-###  **Access Performance**
-  **`ArrayList`** still outperforms `LinkedList` for element access, with times stable and relatively low
-  (7.32 ms for SIZE = 10,000 vs. 11.26 ms for 1000, 10.64 ms for 10).
-  **`LinkedList`** suffers from **extremely slow access times** as the list size grows (2802.84 ms for SIZE = 10,000 vs. 249.55 ms for 1000, 23.33 ms for 100).
-  This is because each access requires traversing the list from the start, resulting in high latency as the list grows.
+	SIZE 10000
+								  #1        #2        #3          #4        #5          #6 	... (as many tests as you ran)
+        testArrayListAddRemove:   672.47ms  499.74ms  577.58ms    575.16ms   552.83ms   1028.03ms  ... (fill these in in ms)
+        testLinkedListAddRemove:  25.34ms   22.24ms   21.76ms     20.22ms    27.79ms    40.35ms
+		testArrayListAccess:      11.56ms   9.86ms    8.75ms      8.10ms     10.64ms    16.60ms
+        testLinkedListAccess:     3337.51ms 3159.39ms  3249.27ms  3546.46ms  3130.96ms  4453.92ms
+
+	listAccess - which type of List is better to use, and why?
+
+		ArrayLists is better to use for listAccess, because it outperforms LinkedList for element access, with times relatively low.
+        LinkedList has extremely slow access times as the list size grows.
+        This is because each access requires traversing the list from the start, resulting in high latency as the list grows.
 
 
----
+	listAddRemove - which type of List is better to use, and why?
 
-
+		LinkedList is better to use for listAddRemove, because it continues to be faster than ArrayList.
+         The times remain relatively stable for LinkedList compared to ArrayList.
+         As the list grows, ArrayList's performance degrades significantly, due to shifting elements when adding/removing,
+         making it slower than LinkedList as the list size increases.

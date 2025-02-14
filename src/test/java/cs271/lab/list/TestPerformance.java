@@ -9,23 +9,7 @@ import org.junit.Test;
 
 public class TestPerformance {
 
-  // running test and recording running times for SIZE = 10, 100, 1000, 10000, ...
-
-  // Conclusions: Performance of LinkedList vs. ArrayList when comparing their running times for AddRemove vs. Access?
-  // (Running times recorded in README.txt!)
-  //
-  // 1. Add/Remove Performance
-  //ArrayList is significantly slower than LinkedList for add/remove.
-  //
-  // 2️. Access Performance
-  //ArrayList is much faster than LinkedList for element access.
-  //
-  // which of the two lists performs better as the size increases?
-  // As the size increases:
-  // ArrayList is better for access performance.
-  // LinkedList is better for add/remove operations.
-
-  private final int SIZE = 1000;
+  private final int SIZE = 10000;
 
   // for increasing problem sizes
   private final int REPS = 1000000;
@@ -68,7 +52,7 @@ public class TestPerformance {
       arrayList.add(0, 77);
       arrayList.remove(0);
     }
-    long endTime = System.nanoTime(); // CHANGED: End time measurement
+    long endTime = System.nanoTime(); // End time measurement
     System.out.println("ArrayList Add/Remove Time: " + (endTime - startTime) / 1e6 + " ms"); // Print execution time
   }
 
